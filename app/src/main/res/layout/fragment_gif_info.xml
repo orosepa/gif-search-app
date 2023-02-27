@@ -1,6 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="@dimen/small">
+
+    <ImageView
+        android:id="@+id/iv_gif_info"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/gif_height"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@tools:sample/backgrounds/scenic" />
+
+    <TextView
+        android:id="@+id/tv_added_by"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_gif_info"
+        android:text="@string/added_by" />
+
+    <TextView
+        android:id="@+id/tv_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/iv_gif_info"
+        app:layout_constraintStart_toEndOf="@id/tv_added_by"
+        android:linksClickable="true"
+        tools:text="\@orosepa"
+        android:layout_marginHorizontal="@dimen/extra_small" />
+
+    <TextView
+        android:id="@+id/tv_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tv_added_by"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginVertical="@dimen/small"
+        tools:text="Описание изображения" />
+
+    <TextView
+        android:id="@+id/tv_when_loaded"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_description"
+        android:text="@string/loaded" />
+
+    <TextView
+        android:id="@+id/tv_load_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tv_description"
+        app:layout_constraintStart_toEndOf="@id/tv_when_loaded"
+        android:linksClickable="true"
+        tools:text="27.02.2023"
+        android:layout_marginHorizontal="@dimen/extra_small" />
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:src="@drawable/mpa_rating_g"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

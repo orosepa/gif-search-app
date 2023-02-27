@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="extra_small">2dp</dimen>
+    <dimen name="gif_height">256dp</dimen>
+    <dimen name="small">8dp</dimen>
+    <dimen name="search_bar_height">40dp</dimen>
+    <dimen name="medium">16dp</dimen>
+</resources>

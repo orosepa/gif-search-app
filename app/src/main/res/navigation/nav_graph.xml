@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/gifGalleryFragment">
+
+    <fragment
+        android:id="@+id/gifGalleryFragment"
+        android:name="com.example.gifsearchapp.presentation.fragment.GifGalleryFragment"
+        android:label="GifGalleryFragment" >
+        <action
+            android:id="@+id/action_gifGalleryFragment_to_gifInfoFragment"
+            app:destination="@id/gifInfoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/gifInfoFragment"
+        android:name="com.example.gifsearchapp.presentation.fragment.GifInfoFragment"
+        android:label="GifInfoFragment" />
+</navigation>
