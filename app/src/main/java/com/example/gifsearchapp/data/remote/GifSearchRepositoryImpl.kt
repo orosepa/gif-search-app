@@ -13,7 +13,17 @@ class GifSearchRepositoryImpl(
         query: String,
         offset: Int,
         rating: String?
-    ) : Response<GifSearchResponse> = api.searchGifs(query, offset, rating)
+    ) : Resource <GifSearchResponse> {
+        val response = api.searchGifs(query, offset, rating)
+        if (response.isSuccessful)
+            return Resource.Success(response.body()!!.toGifSearchResponse())
+        return Resource.Error(response.message())
+    }
 
-    override suspend fun getGifById(id: String) : Response<Gif> = api.getGifById(id)
+    override suspend fun getGifById(id: String) : Resource<Gif> {
+        val response = api.getGifById(id)
+        if (response.isSuccessful)
+            return Resource.Success(response.body()!!.toGif())
+        return Resource.Error(response.message())
+    }
 }

@@ -71,7 +71,6 @@ class GifGalleryFragment : Fragment(R.layout.fragment_gif_gallery) {
         }
 
         override fun onQueryTextChange(p0: String?): Boolean {
-            Thread.sleep(500)
             viewModel.searchGifs(p0 ?: "", offset)
             return true
         }

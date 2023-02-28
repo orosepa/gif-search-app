@@ -25,18 +25,12 @@ class GifSearchViewModel @Inject constructor(
     fun searchGifs(query: String, offset: Int) = viewModelScope.launch {
         _gifs.postValue(Resource.Loading())
         val response = repository.searchGifs(query, offset)
-        if (response.isSuccessful)
-            _gifs.postValue(Resource.Success(response.body()!!))
-        else
-            _gifs.postValue(Resource.Error(response.message()))
+        _gifs.postValue(response)
     }
 
     fun getGifById(id: String) = viewModelScope.launch {
         _currentGif.postValue(Resource.Loading())
         val response = repository.getGifById(id)
-        if (response.isSuccessful)
-            _currentGif.postValue(Resource.Success(response.body()!!))
-        else
-            _currentGif.postValue(Resource.Error(response.message()))
+        _currentGif.postValue(response)
     }
 }

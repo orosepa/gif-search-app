@@ -2,6 +2,7 @@ package com.example.gifsearchapp.domain.repository
 
 import com.example.gifsearchapp.domain.model.Gif
 import com.example.gifsearchapp.domain.model.GifSearchResponse
+import com.example.gifsearchapp.util.Resource
 import retrofit2.Response
 
 interface GifSearchRepository {
@@ -9,9 +10,9 @@ interface GifSearchRepository {
         query: String,
         offset: Int,
         rating: String? = null
-    ) : Response<GifSearchResponse>
+    ) : Resource<GifSearchResponse>
 
     suspend fun getGifById(
         id: String
-    ) : Response<Gif>
+    ) : Resource<Gif>
 }

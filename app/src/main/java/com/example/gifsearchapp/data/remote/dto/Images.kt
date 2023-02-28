@@ -1,4 +1,4 @@
-package com.example.gifsearchapp.domain.model
+package com.example.gifsearchapp.data.remote.dto
 
 data class Images(
     val original: Original

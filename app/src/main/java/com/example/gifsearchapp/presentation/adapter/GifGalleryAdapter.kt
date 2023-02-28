@@ -20,7 +20,7 @@ class GifGalleryAdapter : RecyclerView.Adapter<GifGalleryAdapter.GifViewHolder>(
 
         fun bind(gif: Gif) {
             Glide.with(itemView.context)
-                .load(gif.images.original.url)
+                .load(gif.url)
                 .into(binding.ivGifItem)
         }
     }
