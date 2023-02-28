@@ -32,27 +32,18 @@
         android:layout_marginHorizontal="@dimen/extra_small" />
 
     <TextView
-        android:id="@+id/tv_description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/tv_added_by"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginVertical="@dimen/small"
-        tools:text="Описание изображения" />
-
-    <TextView
         android:id="@+id/tv_when_loaded"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_description"
+        app:layout_constraintTop_toBottomOf="@id/tv_added_by"
         android:text="@string/loaded" />
 
     <TextView
         android:id="@+id/tv_load_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/tv_description"
+        app:layout_constraintTop_toBottomOf="@id/tv_added_by"
         app:layout_constraintStart_toEndOf="@id/tv_when_loaded"
         android:linksClickable="true"
         tools:text="27.02.2023"
@@ -60,6 +51,7 @@
 
 
     <ImageView
+        android:id="@+id/iv_rating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"

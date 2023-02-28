@@ -23,7 +23,7 @@ class GifSearchRepositoryImpl(
     override suspend fun getGifById(id: String) : Resource<Gif> {
         val response = api.getGifById(id)
         if (response.isSuccessful)
-            return Resource.Success(response.body()!!.toGif())
+            return Resource.Success(response.body()!!.data.toGif())
         return Resource.Error(response.message())
     }
 }

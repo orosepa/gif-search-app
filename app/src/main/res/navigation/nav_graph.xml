@@ -15,5 +15,9 @@
     <fragment
         android:id="@+id/gifInfoFragment"
         android:name="com.example.gifsearchapp.presentation.fragment.GifInfoFragment"
-        android:label="GifInfoFragment" />
+        android:label="GifInfoFragment" >
+        <argument
+            android:name="id"
+            app:argType="string" />
+    </fragment>
 </navigation>
