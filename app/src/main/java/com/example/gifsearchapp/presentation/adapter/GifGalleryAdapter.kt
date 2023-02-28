@@ -9,8 +9,6 @@ import com.bumptech.glide.Glide
 import com.example.gifsearchapp.R
 import com.example.gifsearchapp.databinding.ItemGifGalleryBinding
 import com.example.gifsearchapp.domain.model.Gif
-import com.google.android.flexbox.AlignSelf
-import com.google.android.flexbox.FlexboxLayoutManager
 
 class GifGalleryAdapter : RecyclerView.Adapter<GifGalleryAdapter.GifViewHolder>() {
 
@@ -20,7 +18,7 @@ class GifGalleryAdapter : RecyclerView.Adapter<GifGalleryAdapter.GifViewHolder>(
 
         fun bind(gif: Gif) {
             Glide.with(itemView.context)
-                .load(gif.url)
+                .load(gif.urlSmall)
                 .into(binding.ivGifItem)
         }
     }

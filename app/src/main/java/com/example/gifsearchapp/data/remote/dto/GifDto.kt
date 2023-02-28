@@ -14,7 +14,7 @@ data class GifDto(
         username = username,
         title = title,
         rating = rating,
-        url = images.original.url
+        urlSmall = images.fixedWidth.url
     )
 }
 
