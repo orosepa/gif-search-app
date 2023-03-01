@@ -10,6 +10,7 @@
         android:layout_height="@dimen/search_bar_height"
         android:layout_margin="@dimen/medium"
         android:textCursorDrawable="@null"
+        android:background="@drawable/search_view_shape"
         app:iconifiedByDefault="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,6 +25,8 @@
         android:layout_height="wrap_content"
         android:paddingBottom="@dimen/gif_size"
         android:clipToPadding="false"
+        android:layout_marginTop="@dimen/medium"
+        android:overScrollMode="never"
         app:layout_constraintTop_toBottomOf="@id/search_view"/>
 
 
