@@ -19,7 +19,8 @@ class GifGalleryAdapter : RecyclerView.Adapter<GifGalleryAdapter.GifViewHolder>(
         fun bind(gif: Gif) {
             Glide.with(itemView.context)
                 .load(gif.urlSmall)
-                .thumbnail(0.03f)
+                .placeholder(R.color.blue_gray_200)
+                .thumbnail(0.01f)
                 .into(binding.ivGifItem)
         }
     }
