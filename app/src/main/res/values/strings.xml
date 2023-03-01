@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">GifSearchApp</string>
-    <string name="added_by">Добавлено пользователем </string>
-    <string name="loaded">Загружено</string>
-    <string name="search_gif">Поиск GIF</string>
+    <string name="added_by">Автор: </string>
+    <string name="loaded">Загружено: </string>
+    <string name="search_gif">Найти гифки!</string>
+    <string name="gif_search_title">Поиск GIF</string>
 </resources>

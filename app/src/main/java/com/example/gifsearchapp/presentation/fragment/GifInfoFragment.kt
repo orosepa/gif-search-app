@@ -5,12 +5,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.gifsearchapp.R
 import com.example.gifsearchapp.databinding.FragmentGifInfoBinding
+import com.example.gifsearchapp.presentation.activity.GifSearchActivity
 import com.example.gifsearchapp.presentation.viewmodel.GifSearchViewModel
 import com.example.gifsearchapp.util.Resource
 import dagger.hilt.android.AndroidEntryPoint
@@ -28,6 +30,7 @@ class GifInfoFragment : Fragment(R.layout.fragment_gif_info) {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentGifInfoBinding.inflate(inflater, container, false)
+        (activity as GifSearchActivity).supportActionBar?.title = args.title
         viewModel.getGifById(args.id)
         return binding.root
     }
@@ -40,8 +43,13 @@ class GifInfoFragment : Fragment(R.layout.fragment_gif_info) {
                 is Resource.Success -> {
                     val data = response.data!!
                     Glide.with(this).load(data.urlOriginal).into(binding.ivGifInfo)
-                    binding.tvUsername.text = data.username
+                    if (data.username.isBlank()) {
+                        binding.tvAddedBy.visibility = View.GONE
+                    } else {
+                        binding.tvUsername.text = data.username
+                    }
                     binding.tvLoadDate.text = data.importDatetime
+                    binding.tvTitle.text = data.title
                     binding.ivRating.setImageResource(
                         when (data.rating) {
                             "g" -> R.drawable.mpa_rating_g

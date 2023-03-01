@@ -6,18 +6,19 @@
 
     <fragment
         android:id="@+id/gifGalleryFragment"
-        android:name="com.example.gifsearchapp.presentation.fragment.GifGalleryFragment"
-        android:label="GifGalleryFragment" >
+        android:name="com.example.gifsearchapp.presentation.fragment.GifGalleryFragment">
         <action
             android:id="@+id/action_gifGalleryFragment_to_gifInfoFragment"
             app:destination="@id/gifInfoFragment" />
     </fragment>
     <fragment
         android:id="@+id/gifInfoFragment"
-        android:name="com.example.gifsearchapp.presentation.fragment.GifInfoFragment"
-        android:label="GifInfoFragment" >
+        android:name="com.example.gifsearchapp.presentation.fragment.GifInfoFragment">
         <argument
             android:name="id"
+            app:argType="string" />
+        <argument
+            android:name="title"
             app:argType="string" />
     </fragment>
 </navigation>

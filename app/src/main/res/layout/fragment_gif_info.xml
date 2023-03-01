@@ -9,23 +9,41 @@
     <ImageView
         android:id="@+id/iv_gif_info"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/gif_height"
+        android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
+        android:adjustViewBounds="true"
+        android:maxHeight="@dimen/gif_max_height"
+        tools:layout_height="@dimen/gif_height"
         tools:src="@tools:sample/backgrounds/scenic" />
 
     <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textStyle="italic"
+        app:layout_constraintTop_toBottomOf="@id/iv_gif_info"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tv_added_by"
+        android:layout_margin="@dimen/medium"
+        tools:text="Title of GIF \ntwo lines" />
+
+    <TextView
         android:id="@+id/tv_added_by"
+        android:layout_marginTop="@dimen/small"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_gif_info"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title"
         android:text="@string/added_by" />
 
     <TextView
         android:id="@+id/tv_username"
+        android:layout_marginTop="@dimen/small"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/iv_gif_info"
+        app:layout_constraintTop_toBottomOf="@id/tv_title"
         app:layout_constraintStart_toEndOf="@id/tv_added_by"
         android:linksClickable="true"
         tools:text="\@orosepa"
@@ -33,6 +51,7 @@
 
     <TextView
         android:id="@+id/tv_when_loaded"
+        android:layout_marginTop="@dimen/small"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
@@ -41,6 +60,7 @@
 
     <TextView
         android:id="@+id/tv_load_date"
+        android:layout_marginTop="@dimen/small"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/tv_added_by"

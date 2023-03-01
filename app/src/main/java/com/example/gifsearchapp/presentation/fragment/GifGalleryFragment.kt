@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.gifsearchapp.R
 import com.example.gifsearchapp.databinding.FragmentGifGalleryBinding
+import com.example.gifsearchapp.presentation.activity.GifSearchActivity
 import com.example.gifsearchapp.presentation.adapter.GifGalleryAdapter
 import com.example.gifsearchapp.presentation.viewmodel.GifSearchViewModel
 import com.example.gifsearchapp.util.Resource
@@ -32,6 +33,7 @@ class GifGalleryFragment : Fragment(R.layout.fragment_gif_gallery) {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentGifGalleryBinding.inflate(inflater, container, false)
+        (activity as GifSearchActivity).supportActionBar?.setTitle(R.string.gif_search_title)
         return binding.root
     }
 
@@ -42,6 +44,7 @@ class GifGalleryFragment : Fragment(R.layout.fragment_gif_gallery) {
         gifGalleryAdapter.setOnItemClickListener {
             val bundle = Bundle().apply {
                 putString("id", it.id)
+                putString("title", it.title)
             }
             findNavController().navigate(
                 R.id.action_gifGalleryFragment_to_gifInfoFragment,
@@ -75,6 +78,7 @@ class GifGalleryFragment : Fragment(R.layout.fragment_gif_gallery) {
             val imm =
                 requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.hideSoftInputFromWindow(view?.windowToken, 0)
+            binding.searchView.clearFocus()
             return true
         }
 

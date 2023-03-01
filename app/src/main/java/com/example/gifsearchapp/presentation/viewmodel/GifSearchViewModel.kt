@@ -9,6 +9,7 @@ import com.example.gifsearchapp.domain.model.GifSearchResponse
 import com.example.gifsearchapp.domain.repository.GifSearchRepository
 import com.example.gifsearchapp.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

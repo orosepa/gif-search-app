@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.gifsearchapp.R
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -18,9 +19,10 @@ class GifSearchActivity : AppCompatActivity() {
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
         navController.enableOnBackPressed(true)
+        setupActionBarWithNavController(navController)
+        supportActionBar?.setDisplayShowTitleEnabled(true)
     }
 
     override fun onSupportNavigateUp(): Boolean =
         navController.navigateUp() || super.onSupportNavigateUp()
-
 }

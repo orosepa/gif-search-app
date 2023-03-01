@@ -22,6 +22,8 @@
         android:id="@+id/rv_gif_gallery"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/gif_size"
+        android:clipToPadding="false"
         app:layout_constraintTop_toBottomOf="@id/search_view"/>
 
 
