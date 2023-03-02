@@ -1,6 +1,5 @@
 package com.example.gifsearchapp.presentation.fragment
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.net.Uri
@@ -9,7 +8,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
@@ -25,7 +23,6 @@ import com.example.gifsearchapp.presentation.viewmodel.GifSearchViewModel
 import com.example.gifsearchapp.util.Constants
 import com.example.gifsearchapp.util.Resource
 import dagger.hilt.android.AndroidEntryPoint
-import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
@@ -99,7 +96,15 @@ class GifInfoFragment : Fragment(R.layout.fragment_gif_info) {
                 is Resource.Loading -> {
                     Log.i(TAG, "Loading gif data...")
                 }
-                is Resource.Error -> {}
+                is Resource.Error -> {
+                    Log.i(TAG, "Error loading GifInfo! Message: ${response.message}")
+                    binding.gifInfoContainer.visibility = View.GONE
+                    binding.pbGifInfo.visibility = View.GONE
+                    binding.tvErrorInfo.apply {
+                        visibility = View.VISIBLE
+                        text = resources.getString(R.string.something_went_wrong)
+                    }
+                }
             }
         }
     }
@@ -111,6 +116,13 @@ class GifInfoFragment : Fragment(R.layout.fragment_gif_info) {
             target: Target<Drawable>?,
             isFirstResource: Boolean
         ): Boolean {
+            Log.i(TAG, "Error loading Gif! Message: ${e?.message}")
+            binding.gifInfoContainer.visibility = View.GONE
+            binding.pbGifInfo.visibility = View.GONE
+            binding.tvErrorInfo.apply {
+                visibility = View.VISIBLE
+                text = resources.getString(R.string.something_went_wrong)
+            }
             return false
         }
 

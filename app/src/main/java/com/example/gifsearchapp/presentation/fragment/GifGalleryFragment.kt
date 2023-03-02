@@ -2,11 +2,13 @@ package com.example.gifsearchapp.presentation.fragment
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.widget.SearchView
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -31,6 +33,9 @@ class GifGalleryFragment : Fragment(R.layout.fragment_gif_gallery) {
     private lateinit var gifGalleryAdapter: GifGalleryAdapter
     private var offset = 0
 
+    companion object {
+        const val TAG = "GifGalleryFragment"
+    }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -62,10 +67,24 @@ class GifGalleryFragment : Fragment(R.layout.fragment_gif_gallery) {
         viewModel.gifs.observe(viewLifecycleOwner) { response ->
             when (response) {
                 is Resource.Success -> {
+                    Log.i(TAG, "Successfully loaded gifs!")
                     gifGalleryAdapter.differ.submitList(response.data?.data)
+                    binding.rvGifGallery.visibility = View.VISIBLE
+                    binding.searchView.visibility = View.VISIBLE
+                    binding.tvErrorGallery.visibility = View.GONE
                 }
-                is Resource.Loading -> {}
-                is Resource.Error -> {}
+                is Resource.Loading -> {
+                    Log.i(TAG, "Loading gifs...")
+                }
+                is Resource.Error -> {
+                    Log.i(TAG, "Error loading gifs!")
+                    binding.rvGifGallery.visibility = View.GONE
+                    binding.searchView.visibility = View.GONE
+                    binding.tvErrorGallery.apply {
+                        visibility = View.VISIBLE
+                        text = response.message
+                    }
+                }
             }
         }
     }
@@ -91,7 +110,8 @@ class GifGalleryFragment : Fragment(R.layout.fragment_gif_gallery) {
             searchJob?.cancel()
             searchJob = MainScope().launch {
                 delay(500L)
-                viewModel.searchGifs(p0 ?: "", offset)
+                if (binding.searchView.isVisible)
+                    viewModel.searchGifs(p0 ?: "")
             }
             return true
         }
