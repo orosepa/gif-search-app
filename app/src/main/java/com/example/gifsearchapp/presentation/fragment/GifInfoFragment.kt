@@ -25,6 +25,9 @@ import com.example.gifsearchapp.presentation.viewmodel.GifSearchViewModel
 import com.example.gifsearchapp.util.Constants
 import com.example.gifsearchapp.util.Resource
 import dagger.hilt.android.AndroidEntryPoint
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 @AndroidEntryPoint
 class GifInfoFragment : Fragment(R.layout.fragment_gif_info) {
@@ -62,25 +65,35 @@ class GifInfoFragment : Fragment(R.layout.fragment_gif_info) {
                     } else {
                         binding.tvUsername.text = data.username
                     }
-                    binding.tvLoadDate.text = data.importDatetime
-                    binding.tvTitle.text = data.title
-                    binding.ivRating.setImageResource(
-                        when (data.rating) {
-                            "g" -> R.drawable.mpa_rating_g
-                            "pg" -> R.drawable.mpa_rating_pg
-                            "pg-13" -> R.drawable.mpa_rating_pg_13
-                            "r" -> R.drawable.mpa_rating_r
-                            else -> 0
-                        }
-                    )
-                    binding.ivRating.setOnClickListener {
-                        val stringUri = Constants.MPAA_RATING_INFO_URL + data.rating.uppercase()
-                        val uri = Uri.parse(stringUri)
-                        val intentInfoAboutRatings = Intent(
-                            Intent.ACTION_VIEW,
-                            uri
+                    binding.tvLoadDate.apply {
+                        val dateTime = LocalDateTime.parse(
+                            data.importDatetime,
+                            DateTimeFormatter.ofPattern(Constants.IMPORT_DATE_TIME_FORMAT)
                         )
-                        startActivity(intentInfoAboutRatings)
+                        text = DateTimeFormatter
+                            .ofPattern("dd MM yyyy")
+                            .format(dateTime)
+                    }
+                    binding.tvTitle.text = data.title
+                    binding.ivRating.apply {
+                        setImageResource(
+                            when (data.rating) {
+                                "g" -> R.drawable.mpa_rating_g
+                                "pg" -> R.drawable.mpa_rating_pg
+                                "pg-13" -> R.drawable.mpa_rating_pg_13
+                                "r" -> R.drawable.mpa_rating_r
+                                else -> 0
+                            }
+                        )
+                        setOnClickListener {
+                            val stringUri = Constants.MPAA_RATING_INFO_URL + data.rating.uppercase()
+                            val uri = Uri.parse(stringUri)
+                            val intentInfoAboutRatings = Intent(
+                                Intent.ACTION_VIEW,
+                                uri
+                            )
+                            startActivity(intentInfoAboutRatings)
+                        }
                     }
                 }
                 is Resource.Loading -> {
