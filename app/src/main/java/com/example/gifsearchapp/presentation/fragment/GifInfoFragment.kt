@@ -1,7 +1,9 @@
 package com.example.gifsearchapp.presentation.fragment
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.graphics.drawable.Drawable
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -20,6 +22,7 @@ import com.example.gifsearchapp.R
 import com.example.gifsearchapp.databinding.FragmentGifInfoBinding
 import com.example.gifsearchapp.presentation.activity.GifSearchActivity
 import com.example.gifsearchapp.presentation.viewmodel.GifSearchViewModel
+import com.example.gifsearchapp.util.Constants
 import com.example.gifsearchapp.util.Resource
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -70,6 +73,15 @@ class GifInfoFragment : Fragment(R.layout.fragment_gif_info) {
                             else -> 0
                         }
                     )
+                    binding.ivRating.setOnClickListener {
+                        val stringUri = Constants.MPAA_RATING_INFO_URL + data.rating.uppercase()
+                        val uri = Uri.parse(stringUri)
+                        val intentInfoAboutRatings = Intent(
+                            Intent.ACTION_VIEW,
+                            uri
+                        )
+                        startActivity(intentInfoAboutRatings)
+                    }
                 }
                 is Resource.Loading -> {
                     Log.i(TAG, "Loading gif data...")
