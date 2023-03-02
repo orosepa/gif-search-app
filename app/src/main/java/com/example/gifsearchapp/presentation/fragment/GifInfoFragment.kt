@@ -16,6 +16,7 @@ import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
@@ -89,6 +90,9 @@ class GifInfoFragment : Fragment(R.layout.fragment_gif_info) {
                         clipboard.setPrimaryClip(clipData)
                         if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.S_V2)
                             Toast.makeText(context, R.string.copied, Toast.LENGTH_SHORT).show()
+                    }
+                    android.R.id.home -> {
+                        findNavController().navigateUp()
                     }
                 }
                 return true
