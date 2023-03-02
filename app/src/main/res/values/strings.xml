@@ -1,9 +1,11 @@
 <resources>
     <string name="app_name">GifSearchApp</string>
-    <string name="added_by">Автор: </string>
-    <string name="loaded">Загружено: </string>
+    <string name="added_by">Автор: %1$s</string>
+    <string name="import_date">Загружено %1$s</string>
     <string name="search_gif">Найти гифки!</string>
     <string name="gif_search_title">Поиск GIF</string>
     <string name="no_internet_connection">Отсутствует подключение к интернету :(</string>
     <string name="something_went_wrong">Что-то пошло не так…</string>
+    <string name="copied">Ссылка скопирована!</string>
+    <string name="copy">copy</string>
 </resources>

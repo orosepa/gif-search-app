@@ -10,6 +10,7 @@
         android:id="@+id/gif_info_container"
         android:layout_width="match_parent"
         android:visibility="invisible"
+        tools:visibility="visible"
         android:layout_height="match_parent">
         <ImageView
             android:id="@+id/iv_gif_info"
@@ -44,35 +45,13 @@
             android:text="@string/added_by" />
 
         <TextView
-            android:id="@+id/tv_username"
-            android:layout_marginTop="@dimen/small"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/tv_title"
-            app:layout_constraintStart_toEndOf="@id/tv_added_by"
-            android:linksClickable="true"
-            tools:text="\@orosepa"
-            android:layout_marginHorizontal="@dimen/extra_small" />
-
-        <TextView
-            android:id="@+id/tv_when_loaded"
+            android:id="@+id/tv_import_date"
             android:layout_marginTop="@dimen/small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_added_by"
-            android:text="@string/loaded" />
-
-        <TextView
-            android:id="@+id/tv_load_date"
-            android:layout_marginTop="@dimen/small"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/tv_added_by"
-            app:layout_constraintStart_toEndOf="@id/tv_when_loaded"
-            android:linksClickable="true"
-            tools:text="27.02.2023"
-            android:layout_marginHorizontal="@dimen/extra_small" />
+            android:text="@string/import_date" />
 
 
         <ImageView
