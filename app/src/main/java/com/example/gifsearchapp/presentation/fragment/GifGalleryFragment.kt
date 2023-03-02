@@ -18,6 +18,10 @@ import com.example.gifsearchapp.presentation.adapter.GifGalleryAdapter
 import com.example.gifsearchapp.presentation.viewmodel.GifSearchViewModel
 import com.example.gifsearchapp.util.Resource
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class GifGalleryFragment : Fragment(R.layout.fragment_gif_gallery) {
@@ -82,8 +86,13 @@ class GifGalleryFragment : Fragment(R.layout.fragment_gif_gallery) {
             return true
         }
 
+        var searchJob: Job? = null
         override fun onQueryTextChange(p0: String?): Boolean {
-            viewModel.searchGifs(p0 ?: "", offset)
+            searchJob?.cancel()
+            searchJob = MainScope().launch {
+                delay(500L)
+                viewModel.searchGifs(p0 ?: "", offset)
+            }
             return true
         }
 
