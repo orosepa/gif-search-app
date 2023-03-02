@@ -23,7 +23,7 @@ import javax.inject.Inject
 @HiltViewModel
 class GifSearchViewModel @Inject constructor(
     private val repository: GifSearchRepository,
-    private val networkStatusListener: NetworkStatusListener,
+    networkStatusListener: NetworkStatusListener,
     @ApplicationContext context: Context
 ) : ViewModel() {
 
@@ -33,6 +33,7 @@ class GifSearchViewModel @Inject constructor(
 
     private val _gifs: MutableLiveData<Resource<GifSearchResponse>> = MutableLiveData()
     val gifs: LiveData<Resource<GifSearchResponse>> = _gifs
+    private var gifSearchResponse: GifSearchResponse? = null
 
     private val _currentGif: MutableLiveData<Resource<Gif>> = MutableLiveData()
     val currentGif: LiveData<Resource<Gif>> = _currentGif
@@ -44,7 +45,6 @@ class GifSearchViewModel @Inject constructor(
             when (status) {
                 Connection.Available -> {
                     Log.i(TAG, "Internet connection is available!")
-                    searchGifs(latestQuery)
                 }
                 Connection.Unavailable -> {
                     Log.i(TAG, "Internet connection is unavailable!")
@@ -57,12 +57,30 @@ class GifSearchViewModel @Inject constructor(
             }
         }.launchIn(viewModelScope)
     }
-    fun searchGifs(query: String, offset: Int = 0) = viewModelScope.launch {
+    fun searchGifs(query: String = latestQuery, offset: Int) = viewModelScope.launch {
+
+        if (query != latestQuery) {
+            gifSearchResponse = null
+        }
         latestQuery = query
-        Log.d(TAG, "Searching gifs by query `$query`")
+
         _gifs.postValue(Resource.Loading())
         val response = repository.searchGifs(query, offset)
-        _gifs.postValue(response)
+        if (response is Resource.Success) {
+            response.data?.data?.let {
+                if (gifSearchResponse == null) {
+                    gifSearchResponse = response.data
+                } else {
+                    val oldGifs = gifSearchResponse?.data as MutableList
+                    val newGifs = response.data.data
+                    oldGifs.addAll(newGifs)
+                }
+                Log.d(TAG, "Response size is ${gifSearchResponse?.data?.size}")
+                _gifs.postValue(Resource.Success(gifSearchResponse!!))
+            }
+        } else {
+            _gifs.postValue(response)
+        }
     }
 
     fun getGifById(id: String) = viewModelScope.launch {
