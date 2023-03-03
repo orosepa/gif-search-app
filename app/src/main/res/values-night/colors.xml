@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="bg_search">@color/black</color>
+    <color name="color_accent">@color/white</color>
+    <color name="stroke_search">@color/color_accent</color>
+</resources>

@@ -97,7 +97,7 @@ class GifInfoFragment : Fragment(R.layout.fragment_gif_info) {
                 }
                 return true
             }
-        }, viewLifecycleOwner, Lifecycle.State.RESUMED)
+        }, viewLifecycleOwner, Lifecycle.State.STARTED)
     }
     private fun showGifInfo(gif: Gif) {
         Glide.with(this)
