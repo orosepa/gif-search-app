@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">GifSearchApp</string>
+    <string name="app_name">Поиск гифок</string>
     <string name="added_by">Автор: %1$s</string>
     <string name="import_date">Загружено %1$s</string>
     <string name="search_gif">Найти гифки!</string>
